@@ -8,15 +8,23 @@
  * Controller of the mytodoApp
  */
 angular.module('mytodoApp')
-  .controller('MainCtrl', function ($scope) {
-	$scope.todos = [];
+  .controller('MainCtrl', function ($scope, TodoResource) {
+	$scope.todos = TodoResource.query()||[];
 	
 	$scope.addTodo = function(){
-		$scope.todos.push($scope.todo);
-		$scope.todo = '';
+
+		TodoResource.save($scope.todo, function(){
+			$scope.todos.push($scope.todo);
+			$scope.todo = {};
+		});
+
+
 	};
 
 	$scope.removeTodo = function(index){
-		$scope.todos.splice(index,1);
+		TodoResource.remove({TodoId:$scope.todos[index].id},function(){
+			$scope.todos.splice(index,1);
+		})
+
 	};
   });

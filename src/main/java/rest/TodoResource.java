@@ -16,6 +16,8 @@ import java.util.List;
  */
 
 @Path("todos")
+
+
 public class TodoResource {
 
     @EJB
@@ -26,7 +28,7 @@ public class TodoResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(Todo todo){
+    public Response create(Todo todo) {
         if (todo.getId() != null) {
             return Response.status(Status.BAD_REQUEST).build();
         }
@@ -45,9 +47,9 @@ public class TodoResource {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response find(@PathParam("id") Integer id){
-        Todo found =  todoService.find(id);
-        if (found == null){
+    public Response find(@PathParam("id") Integer id) {
+        Todo found = todoService.find(id);
+        if (found == null) {
             return Response.status(Status.NOT_FOUND).build();
         }
         return Response.ok(found).build();
@@ -56,7 +58,7 @@ public class TodoResource {
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id")Integer id, Todo todo){
+    public Response update(@PathParam("id") Integer id, Todo todo) {
         if (todo == null) {
             return Response.status(Status.BAD_REQUEST).build();
         }
@@ -74,9 +76,9 @@ public class TodoResource {
 
     @DELETE
     @Path("{id}")
-    public Response delete(@PathParam("id") Integer id){
-        Todo toDelete =  todoService.find(id);
-        if (toDelete == null){
+    public Response delete(@PathParam("id") Integer id) {
+        Todo toDelete = todoService.find(id);
+        if (toDelete == null) {
             return Response.status(Status.NOT_FOUND).build();
         }
         todoService.delete(id);
@@ -85,7 +87,7 @@ public class TodoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Todo> findAll(){
+    public List<Todo> findAll() {
         return todoService.findAll();
     }
 }
