@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>unygo</groupId>
-    <artifactId>mytodos</artifactId>
+    <artifactId>todos</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -33,6 +33,7 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.2.Final</version>
                 <configuration>
+                     <port>10910</port>
                     <filename>${project.artifactId}.war</filename>
                 </configuration>
                 <executions>

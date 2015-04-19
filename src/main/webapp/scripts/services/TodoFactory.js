@@ -4,7 +4,7 @@
 'use strict'
 angular.module('mytodoApp').factory('TodoResource', function($resource){
     var resource = $resource(
-        '/mytodos/rest/todos/:TodoId',
+        '/todos/rest/todos/:TodoId',
         {TodoId:'@id'}
     );
     return resource;
